@@ -1,0 +1,229 @@
+warning: CRLF will be replaced by LF in src/GraphicalView.java.
+The file will have its original line endings in your working directory.
+warning: CRLF will be replaced by LF in src/Infection.java.
+The file will have its original line endings in your working directory.
+[1mdiff --git a/out/production/EpidemicSim/GraphicalView.class b/out/production/EpidemicSim/GraphicalView.class[m
+[1mindex 4855f93..68459a3 100644[m
+Binary files a/out/production/EpidemicSim/GraphicalView.class and b/out/production/EpidemicSim/GraphicalView.class differ
+[1mdiff --git a/out/production/EpidemicSim/Infection.class b/out/production/EpidemicSim/Infection.class[m
+[1mindex 28761c9..1bc8669 100644[m
+Binary files a/out/production/EpidemicSim/Infection.class and b/out/production/EpidemicSim/Infection.class differ
+[1mdiff --git a/out/production/EpidemicSim/Person.class b/out/production/EpidemicSim/Person.class[m
+[1mindex 7769d95..a086999 100644[m
+Binary files a/out/production/EpidemicSim/Person.class and b/out/production/EpidemicSim/Person.class differ
+[1mdiff --git a/out/production/EpidemicSim/Population.class b/out/production/EpidemicSim/Population.class[m
+[1mindex a44ed46..a1846c8 100644[m
+Binary files a/out/production/EpidemicSim/Population.class and b/out/production/EpidemicSim/Population.class differ
+[1mdiff --git a/out/production/EpidemicSim/Vector2.class b/out/production/EpidemicSim/Vector2.class[m
+[1mindex 00aa69e..6c9914e 100644[m
+Binary files a/out/production/EpidemicSim/Vector2.class and b/out/production/EpidemicSim/Vector2.class differ
+[1mdiff --git a/src/GraphicalView.java b/src/GraphicalView.java[m
+[1mindex ad454ad..c7232db 100644[m
+[1m--- a/src/GraphicalView.java[m
+[1m+++ b/src/GraphicalView.java[m
+[36m@@ -35,13 +35,30 @@[m [mpublic class GraphicalView extends JPanel {[m
+         int personWidth = 10;[m
+         int personHeight = 20;[m
+ [m
+[32m+[m[32m        //draw dead[m
+         for(Person person: pop.getPeople()){[m
+[31m-            if(person.isDead()) g2.setColor(new Color(0, 0, 0, 50));[m
+[31m-            else if (person.isInfected()) g2.setColor(Color.red);[m
+[32m+[m[32m            g2.setColor(new Color(0, 0, 0, 50));[m
+[32m+[m[32m            g2.setColor(Color.decode("0xCCCCCC"));[m
+[32m+[m[32m            if(person.isDead()){[m
+[32m+[m[32m                g2.fillRect((int) person.getLocation().x, (int) person.getLocation().y, personWidth, personHeight);[m
+[32m+[m[32m                g2.setColor(Color.decode("0x738473"));[m
+[32m+[m[32m                g2.drawRect((int)person.getLocation().x, (int)person.getLocation().y, personWidth, personHeight);[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        for(Person person: pop.getPeople()){[m
+[32m+[m[32m            if (person.isInfected() && !person.isDead()){[m
+[32m+[m[32m                g2.setColor(new Color(255, 0, 0, 50));[m
+[32m+[m[32m                g2.fillOval((int)person.getLocation().x + personWidth/2 - 20, (int)person.getLocation().y + personHeight/2 - 20, 40, 40);[m
+[32m+[m[32m                g2.setColor(Color.red);[m
+[32m+[m[32m            }[m
+             else g2.setColor(Color.decode("0xbada55"));[m
+[31m-            g2.fillRect((int) person.getLocation().x, (int) person.getLocation().y, personWidth, personHeight);[m
+[31m-            g2.setColor(Color.decode("0x738473"));[m
+[31m-            g2.drawRect((int)person.getLocation().x, (int)person.getLocation().y, personWidth, personHeight);[m
+[32m+[m
+[32m+[m[32m            if(!person.isDead()) {[m
+[32m+[m[32m                g2.fillRect((int) person.getLocation().x, (int) person.getLocation().y, personWidth, personHeight);[m
+[32m+[m[32m                g2.setColor(Color.decode("0x738473"));[m
+[32m+[m[32m                g2.drawRect((int) person.getLocation().x, (int) person.getLocation().y, personWidth, personHeight);[m
+[32m+[m[32m            }[m
+ [m
+ [m
+         }[m
+[1mdiff --git a/src/Infection.java b/src/Infection.java[m
+[1mindex 0ea8c4d..3959798 100644[m
+[1m--- a/src/Infection.java[m
+[1m+++ b/src/Infection.java[m
+[36m@@ -1,9 +1,14 @@[m
+ public class Infection {[m
+[32m+[m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * Main method, program entry.[m
+[32m+[m[32m     * @param args[m
+[32m+[m[32m     */[m
+     public stawarning: CRLF will be replaced by LF in src/Person.java.
+The file will have its original line endings in your working directory.
+warning: CRLF will be replaced by LF in src/Population.java.
+The file will have its original line endings in your working directory.
+warning: CRLF will be replaced by LF in src/Vector2.java.
+The file will have its original line endings in your working directory.
+tic void main(String[] args){[m
+[31m-        Population pop = new Population(1000);[m
+[32m+[m[32m        Population pop = new Population(2000);[m
+         GraphicalView view = new GraphicalView(800, 600);[m
+ [m
+[31m-        pop.randomInfect(10);[m
+[32m+[m[32m        pop.randomInfect(1);[m
+ [m
+         while(true){[m
+             view.setPop(pop);[m
+[1mdiff --git a/src/Person.java b/src/Person.java[m
+[1mindex 2a18c40..044e45d 100644[m
+[1m--- a/src/Person.java[m
+[1m+++ b/src/Person.java[m
+[36m@@ -44,6 +44,8 @@[m [mpublic class Person {[m
+     }[m
+ [m
+     public double getDistanceTo(Person neighbour) {[m
+[31m-        return this.location.getDistanceTo(neighbour.getLocation());[m
+[32m+[m[32m        Vector2 thisCentre = new Vector2(this.location.x + 5, this.location.y + 10);[m
+[32m+[m[32m        Vector2 thatCentre = new Vector2(neighbour.getLocation().x + 5, neighbour.getLocation().y + 10);[m
+[32m+[m[32m        return thisCentre.getDistanceTo(thatCentre);[m
+     }[m
+ }[m
+[1mdiff --git a/src/Population.java b/src/Population.java[m
+[1mindex c782649..2ad80a5 100644[m
+[1m--- a/src/Population.java[m
+[1m+++ b/src/Population.java[m
+[36m@@ -89,7 +89,7 @@[m [mpublic class Population {[m
+             //person.getLocation().add(person.getLocation().getVectorTo(new Vector2(300, 300)).normalise());[m
+             //person.getLocation().add(Vector2.getRandomVector(5, 5));[m
+ [m
+[31m-            if(person.isInfected()) person.setVelocity(person.getLocation().getVectorTo(Vector2.getMouseLocation()));[m
+[32m+[m[32m           // if(person.isInfected()) person.setVelocity(person.getLocation().getVectorTo(Vector2.getMouseLocation()));[m
+ [m
+             if(!person.isDead()) person.setLocation(person.getLocation().add(person.getVelocity().normalise()));[m
+ [m
+[1mdiff --git a/src/Vector2.java b/src/Vector2.java[m
+[1mindex 5ea322f..63d7f76 100644[m
+[1m--- a/src/Vector2.java[m
+[1m+++ b/src/Vector2.java[m
+[36m@@ -1,15 +1,26 @@[m
+ import java.awt.*;[m
+ import java.util.Random;[m
+ [m
+[32m+[m[32m/**[m
+[32m+[m[32m * Vector2 class including basic vector operations for position and velocity representation and calculations.[m
+[32m+[m[32m */[m
+ public class Vector2 {[m
+     public double x;[m
+     public double y;[m
+ [m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * Constructor[m
+[32m+[m[32m     * @param x x value of the vector.[m
+[32m+[m[32m     * @param y y value of the vector.[m
+[32m+[m[32m     */[m
+     public Vector2(double x, double y){[m
+         this.x = x;[m
+         this.y = y;[m
+     }[m
+ [m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * Constructor[m
+[32m+[m[32m     */[m
+     public Vector2(){[m
+         this.x = 0;[m
+         this.y = 0;[m
+[36m@@ -20,20 +31,38 @@[m [mpublic class Vector2 {[m
+         return new Vector2(maxX - ra.nextDouble() * 2 * maxX, maxY - ra.nextDouble() * 2 * maxY);[m
+     }[m
+ [m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * Get the current location of the mouse pointer relative to 0,0.[m
+[32m+[m[32m     * @return Mouse location vector.[m
+[32m+[m[32m     */[m
+     public static Vector2 getMouseLocation(){[m
+         int x = MouseInfo.getPointerInfo().getLocation().x;[m
+         int y = MouseInfo.getPointerInfo().getLocation().y;[m
+         return new Vector2(x, y);[m
+     }[m
+ [m
+[31m-    public double getDistanceTo(Vector2 pos){[m
+[31m-        return Math.sqrt(Math.pow(pos.x - this.x, 2) + Math.pow(pos.y - this.y, 2));[m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * Get distance to target vector.[m
+[32m+[m[32m     * @param target[m
+[32m+[m[32m     * @return Distance vector to target.[m
+[32m+[m[32m     */[m
+[32m+[m[32m    public double getDistanceTo(Vector2 target){[m
+[32m+[m[32m        return Math.sqrt(Math.pow(target.x - this.x, 2) + Math.pow(target.y - this.y, 2));[m
+     }[m
+ [m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * Get vector to target location.[m
+[32m+[m[32m     * @param target Target vector.[m
+[32m+[m[32m     * @return Direction vector to target vector.[m
+[32m+[m[32m     */[m
+     public Vector2 getVectorTo(Vector2 target){[m
+         return new Vector2(target.x - this.x, target.y - this.y);[m
+     }[m
+ [m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * Normalise vector operation[m
+[32m+[m[32m     * @return Normalised Vector2 object.[m
+[32m+[m[32m     */[m
+     public Vector2 normalise(){[m
+         double length = Math.sqrt(this.x * this.x + this.y * this.y);[m
+         this.x /= length;[m
+[36m@@ -41,24 +70,43 @@[m [mpublic class Vector2 {[m
+         return this;[m
+     }[m
+ [m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * Absolute vector operation.[m
+[32m+[m[32m     * @return Absolute Vector2 object.[m
+[32m+[m[32m     */[m
+     public Vector2 abs(){[m
+         this.x = Math.abs(this.x);[m
+         this.y = Math.abs(this.y);[m
+         return this;[m
+     }[m
+ [m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * Addition vector operation.[m
+[32m+[m[32m     * @param addVect[m
+[32m+[m[32m     * @return Sum of two Vector2 objects.[m
+[32m+[m[32m     */[m
+     public Vector2 add(Vector2 addVect){[m
+         this.x += addVect.x;[m
+         this.y += addVect.y;[m
+         return this;[m
+     }[m
+ [m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * Multiplication vector operation.[m
+[32m+[m[32m     * @param multVect[m
+[32m+[m[32m     * @return Product of two Vector2 objects.[m
+[32m+[m[32m     */[m
+     public Vector2 mult(Vector2 multVect){[m
+         this.x *= multVect.x;[m
+         this.y *= multVect.y;[m
+         return this;[m
+     }[m
+ [m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * Division vector operation.[m
+[32m+[m[32m     * @param divVect[m
+[32m+[m[32m     * @return Quotient of two Vector2 objects.[m
+[32m+[m[32m     */[m
+     public Vector2 div(Vector2 divVect){[m
+         this.x *= divVect.x;[m
+         this.y *= divVect.y;[m

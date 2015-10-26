@@ -44,6 +44,8 @@ public class Person {
     }
 
     public double getDistanceTo(Person neighbour) {
-        return this.location.getDistanceTo(neighbour.getLocation());
+        Vector2 thisCentre = new Vector2(this.location.x + 5, this.location.y + 10);
+        Vector2 thatCentre = new Vector2(neighbour.getLocation().x + 5, neighbour.getLocation().y + 10);
+        return thisCentre.getDistanceTo(thatCentre);
     }
 }

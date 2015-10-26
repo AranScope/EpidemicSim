@@ -89,7 +89,7 @@ public class Population {
             //person.getLocation().add(person.getLocation().getVectorTo(new Vector2(300, 300)).normalise());
             //person.getLocation().add(Vector2.getRandomVector(5, 5));
 
-            if(person.isInfected()) person.setVelocity(person.getLocation().getVectorTo(Vector2.getMouseLocation()));
+           // if(person.isInfected()) person.setVelocity(person.getLocation().getVectorTo(Vector2.getMouseLocation()));
 
             if(!person.isDead()) person.setLocation(person.getLocation().add(person.getVelocity().normalise()));
 

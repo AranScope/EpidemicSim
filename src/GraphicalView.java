@@ -35,13 +35,30 @@ public class GraphicalView extends JPanel {
         int personWidth = 10;
         int personHeight = 20;
 
+        //draw dead
         for(Person person: pop.getPeople()){
-            if(person.isDead()) g2.setColor(new Color(0, 0, 0, 50));
-            else if (person.isInfected()) g2.setColor(Color.red);
+            g2.setColor(new Color(0, 0, 0, 50));
+            g2.setColor(Color.decode("0xCCCCCC"));
+            if(person.isDead()){
+                g2.fillRect((int) person.getLocation().x, (int) person.getLocation().y, personWidth, personHeight);
+                g2.setColor(Color.decode("0x738473"));
+                g2.drawRect((int)person.getLocation().x, (int)person.getLocation().y, personWidth, personHeight);
+            }
+        }
+
+        for(Person person: pop.getPeople()){
+            if (person.isInfected() && !person.isDead()){
+                g2.setColor(new Color(255, 0, 0, 50));
+                g2.fillOval((int)person.getLocation().x + personWidth/2 - 20, (int)person.getLocation().y + personHeight/2 - 20, 40, 40);
+                g2.setColor(Color.red);
+            }
             else g2.setColor(Color.decode("0xbada55"));
-            g2.fillRect((int) person.getLocation().x, (int) person.getLocation().y, personWidth, personHeight);
-            g2.setColor(Color.decode("0x738473"));
-            g2.drawRect((int)person.getLocation().x, (int)person.getLocation().y, personWidth, personHeight);
+
+            if(!person.isDead()) {
+                g2.fillRect((int) person.getLocation().x, (int) person.getLocation().y, personWidth, personHeight);
+                g2.setColor(Color.decode("0x738473"));
+                g2.drawRect((int) person.getLocation().x, (int) person.getLocation().y, personWidth, personHeight);
+            }
 
 
         }
